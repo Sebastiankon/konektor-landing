@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Konektor - Marketing Inmersivo y Metaverso | Líder en LATAM</title>
+  <meta name="description" content="Agencia líder en marketing inmersivo, Metaverso y VR en LATAM. Más de 350 proyectos realizados. Creamos experiencias revolucionarias como Yopi en Roblox."/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a40 50%, #2d1b69 100%);
+      color: white;
+    }
+
+    .particles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px; height: 4px;
+      background: linear-gradient(45deg, #00f5ff, #8a2be2);
+      border-radius: 50%;
+      animation: float 20s infinite linear;
+      box-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+    }
+
+    @keyframes float {
+      from { transform: translateY(100vh); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      to { transform: translateY(-100px) translateX(100px); opacity: 0; }
+    }
+
+    .header {
+      position: fixed;
+      top: 0; width: 100%;
+      background: rgba(15, 15, 35, 0.9);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(0, 245, 255, 0.2);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #00f5ff, #8a2be2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: #00f5ff;
+      text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 0 2rem;
+      background: radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(0, 245, 255, 0.3) 0%, transparent 50%);
+    }
+
+    .hero-content {
+      max-width: 800px;
+      z-index: 10;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: bold;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #00f5ff, #ffffff, #8a2be2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 50px rgba(0, 245, 255, 0.3);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 20px rgba(0, 245, 255, 0.3)); }
+      to { filter: drop-shadow(0 0 40px rgba(138, 43, 226, 0.4)); }
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .tagline {
+      font-size: 1rem;
+      opacity: 0.8;
+      margin-bottom: 1rem;
+      color: #00f5ff;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, #00f5ff, #8a2be2);
+      color: white;
+      box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 245, 255, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #00f5ff;
+      border: 2px solid #00f5ff;
+    }
+
+    .btn-secondary:hover {
+      background: #00f5ff;
+      color: #0f0f23;
+      box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+    }
+
+    .section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    .section h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      background: linear-gradient(45deg, #00f5ff, #8a2be2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 245, 255, 0.2);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1rem;
+      background: linear-gradient(45deg, #00f5ff, #8a2be2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #00f5ff;
+    }
+
+    .contact-form {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(15px);
+      border-radius: 30px;
+      padding: 3rem;
+      border: 1px solid rgba(0, 245, 255, 0.2);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #00f5ff;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid rgba(0, 245, 255, 0.3);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #00f5ff;
+      box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 1.2rem;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .footer {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 3rem 2rem 1rem;
+      text-align: center;
+      border-top: 1px solid rgba(0, 245, 255, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .contact-form {
+        padding: 2rem 1rem;
+      }
+    }
+
+    /* Fallback para navegadores antiguos */
+    @media (max-resolution: 1dppx) {
+      .logo,
+      .hero h1,
+      .section h2 {
+        color: #00f5ff;
+        background: none;
+        text-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">KONEKTOR<div style="font-size: 0.4em; opacity: 0.8; font-weight: normal;">connecting worlds</div></div>
+      <ul class="nav-links">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content fade-in">
+      <h1>KONEKTOR</h1>
+      <div class="tagline">connecting worlds</div>
+      <p>Tu puerta de entrada al Metaverso. Con más de <strong>350 proyectos</strong> realizados, conectamos tu marca con el futuro a través de experiencias inmersivas revolucionarias en Metaverso, VR y mundos virtuales como Roblox.</p>
+      <div class="cta-buttons">
+        <a href="#contacto" class="btn btn-primary">Descargar Casos de Éxito</a>
+        <a href="#servicios" class="btn btn-secondary">Conocer Servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="servicios">
+    <h2 class="fade-in">Servicios Inmersivos</h2>
+    <div class="services-grid">
+      <div class="service-card fade-in"><div class="service-icon">🎮</div><h3>Brand Experiences en Roblox</h3><p>Mundos virtuales como Yopi para Laive, que generan 10 veces más tiempo de interacción que webs tradicionales.</p></div>
+      <div class="service-card fade-in"><div class="service-icon">🏢</div><h3>Espacios Corporativos 3D</h3><p>Salas de ventas, showrooms y oficinas virtuales multiplataforma. Hasta 500 usuarios simultáneos para eventos.</p></div>
+      <div class="service-card fade-in"><div class="service-icon">🎓</div><h3>Metaverso Educativo</h3><p>Auditorios virtuales como el de Duoc UC para eventos internacionales y capacitaciones inmersivas.</p></div>
+      <div class="service-card fade-in"><div class="service-icon">🏠</div><h3>Recorridos Virtuales</h3><p>Salas piloto de proyectos inmobiliarios con experiencias VR y tours 360° interactivos.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="contacto">
+    <h2 class="fade-in">Obtén Nuestro Ebook de Casos de Éxito</h2>
+    <div class="contact-form fade-in">
+      <form id="contactForm" action="https://forms.hubspot.com/uploads/form/v2/23647212/49d1a9f5-e1f6-4de2-aa08-ddd42c56a6b9" method="POST">
+        <input type="hidden" name="hs_context" value='{"hutk": "", "pageUrl": "", "pageName": "Konektor Landing Page"}'>
+        <input type="hidden" name="hs_form_id" value="49d1a9f5-e1f6-4de2-aa08-ddd42c56a6b9">
+        <input type="hidden" name="hs_portal_id" value="23647212">
+
+        <div class="form-group">
+          <label for="firstname">Nombre Completo *</label>
+          <input type="text" id="firstname" name="firstname" placeholder="Tu nombre completo" required>
+        </div>
+        <div class="form-group">
+          <label for="company">Empresa/Organización *</label>
+          <input type="text" id="company" name="company" placeholder="Nombre de tu empresa" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Correo Electrónico *</label>
+          <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Teléfono *</label>
+          <input type="tel" id="phone" name="phone" placeholder="+56 9 1234 5678" required>
+        </div>
+        <button type="submit" class="btn btn-primary form-submit">Descargar Ebook Gratuito</button>
+      </form>
+      <div id="successMessage" style="display:none; margin-top: 1rem;">
+        ¡Gracias! Tu información ha sido enviada exitosamente.
+        <br><br>
+        <strong>Próximos pasos:</strong>
+        <br>• Sebastián Wagner se contactará contigo pronto
+        <br>• Revisa tu correo para recibir el ebook
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="logo" style="margin-bottom: 1rem;">KONEKTOR</div>
+      <div style="color: #00f5ff; margin-bottom: 0.5rem;">connecting worlds</div>
+      <p>Líder en Marketing Inmersivo y Metaverso en LATAM</p>
+      <p style="margin-top: 1rem; font-size: 0.9rem;"><strong>Sebastián Wagner</strong> - Key Account Manager<br>📧 sebastian@konektorgroup.com<br>🌐 www.konektorgroup.com<br>📱 +56 9 5894 7607</p>
+      <p style="margin-top: 1rem; opacity: 0.7; font-size: 0.8rem;">Presencia en España, Andorra, México, Colombia, Chile, Ecuador y Perú<br>© 2025 Konektor Group. El futuro del marketing es inmersivo.</p>
+    </div>
+  </footer>
+
+  <script>
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = window.innerWidth > 768 ? 20 : 10;
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 20 + 's';
+        particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    function handleScrollAnimations() {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < window.innerHeight - 150) {
+          el.classList.add('visible');
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      createParticles();
+      handleScrollAnimations();
+      window.addEventListener('scroll', handleScrollAnimations);
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = this;
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('successMessage').style.display = 'block';
+        } else {
+          alert('Hubo un problema al enviar el formulario.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Hubo un error al enviar el formulario.');
+      });
+    });
+  </script>
+</body>
+</html>
